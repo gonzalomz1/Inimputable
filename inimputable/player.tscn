@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://buh3agcnd72g2"]
+[gd_scene load_steps=5 format=3 uid="uid://buh3agcnd72g2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0xbss"]
+[ext_resource type="PackedScene" uid="uid://cu887m4btgge" path="res://ui.tscn" id="2_f1qmf"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jquht"]
 
@@ -18,3 +19,5 @@ mesh = SubResource("CapsuleMesh_jquht")
 shape = SubResource("ConvexPolygonShape3D_vq6ot")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource("2_f1qmf")]
