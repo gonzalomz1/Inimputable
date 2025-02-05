@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cu887m4btgge"]
+[gd_scene load_steps=18 format=3 uid="uid://cu887m4btgge"]
 
 [ext_resource type="Texture2D" uid="uid://k06rvbwl7p6j" path="res://asset/wolfweapons.png" id="1_55jrg"]
 [ext_resource type="Script" path="res://ui.gd" id="1_n7anj"]
@@ -7,10 +7,6 @@
 atlas = ExtResource("1_55jrg")
 region = Rect2(0, 32, 64, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cw203"]
-atlas = ExtResource("1_55jrg")
-region = Rect2(0, 0, 64, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_w757u"]
 atlas = ExtResource("1_55jrg")
 region = Rect2(128, 32, 64, 32)
@@ -18,6 +14,34 @@ region = Rect2(128, 32, 64, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_bqff0"]
 atlas = ExtResource("1_55jrg")
 region = Rect2(192, 32, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw203"]
+atlas = ExtResource("1_55jrg")
+region = Rect2(0, 0, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a0qka"]
+atlas = ExtResource("1_55jrg")
+region = Rect2(64, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sb1o6"]
+atlas = ExtResource("1_55jrg")
+region = Rect2(128, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35nth"]
+atlas = ExtResource("1_55jrg")
+region = Rect2(192, 64, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhm1e"]
+atlas = ExtResource("1_55jrg")
+region = Rect2(64, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1183"]
+atlas = ExtResource("1_55jrg")
+region = Rect2(128, 96, 64, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7nrc"]
+atlas = ExtResource("1_55jrg")
+region = Rect2(192, 96, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dx0ro"]
 atlas = ExtResource("1_55jrg")
@@ -47,6 +71,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_w757u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqff0")
+}],
+"loop": false,
+"name": &"gun_shoot",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cw203")
 }],
 "loop": false,
@@ -55,13 +90,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_w757u")
+"texture": SubResource("AtlasTexture_a0qka")
+}],
+"loop": true,
+"name": &"machine_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sb1o6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bqff0")
+"texture": SubResource("AtlasTexture_35nth")
 }],
 "loop": false,
-"name": &"shoot",
+"name": &"machine_shoot",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhm1e")
+}],
+"loop": true,
+"name": &"mini_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1183")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7nrc")
+}],
+"loop": false,
+"name": &"mini_shoot",
 "speed": 12.0
 }, {
 "frames": [{
@@ -90,7 +152,7 @@ texture_filter = 1
 position = Vector2(576, 459)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_pll3c")
-animation = &"knife_idle"
+animation = &"machine_idle"
 autoplay = "knife_idle"
 
 [node name="ColorRect" type="ColorRect" parent="."]

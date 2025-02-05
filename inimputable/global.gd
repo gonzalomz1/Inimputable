@@ -1,4 +1,4 @@
 extends Node
 
-#var ammo = 10
-#var current_weapon = "gun"
+var ammo = 50
+var current_weapon = "mini"
