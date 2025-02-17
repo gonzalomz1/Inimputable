@@ -1,0 +1,12 @@
+res://world.tscn
+res://player.gd
+res://player.tscn
+res://ui.tscn
+res://guard.tscn
+res://ammo.tscn
+res://level2.tscn
+res://machine.tscn
+res://mini.tscn
+res://medkit.tscn
+res://guard.gd
+res://medkit.gd
