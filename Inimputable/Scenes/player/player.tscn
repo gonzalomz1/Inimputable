@@ -1,0 +1,290 @@
+[gd_scene load_steps=12 format=3 uid="uid://c5es5rnc7tixu"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_u61d8"]
+[ext_resource type="Texture2D" uid="uid://b2gxviyic0033" path="res://Assets/cristian/pistol_sprites.png" id="2_b05mp"]
+[ext_resource type="AudioStream" uid="uid://y4caa02o0j7c" path="res://Assets/course/assets/revolver_shot1.wav" id="2_lyhe2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f122c"]
+height = 1.8
+
+[sub_resource type="Animation" id="Animation_3wmcs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_4ha1k"]
+resource_name = "empty"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [9]
+}
+
+[sub_resource type="Animation" id="Animation_0dhc3"]
+resource_name = "idle"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2r8l6"]
+resource_name = "reload_per_bullet"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.133333, 0.333333, 0.533333, 0.733333, 0.933333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_t456h"]
+resource_name = "reload_per_magazine"
+length = 1.8
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.04, 0.08, 0.28, 0.48, 0.68, 0.88, 1.08, 1.28, 1.48, 1.68),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_m6xxm"]
+resource_name = "shoot"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.27, 0.57, 0.87),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3850l"]
+_data = {
+"RESET": SubResource("Animation_3wmcs"),
+"empty": SubResource("Animation_4ha1k"),
+"idle": SubResource("Animation_0dhc3"),
+"reload_per_bullet": SubResource("Animation_2r8l6"),
+"reload_per_magazine": SubResource("Animation_t456h"),
+"shoot": SubResource("Animation_m6xxm")
+}
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_u61d8")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_f122c")
+
+[node name="gun_scan" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.539, -0.173)
+target_position = Vector3(0, 0, -1000)
+collision_mask = 3
+
+[node name="item_scan" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.445, 0)
+target_position = Vector3(0, 0, -2)
+collision_mask = 4
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+fov = 103.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GunBase" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -648.0
+offset_right = 576.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Gun" type="Sprite2D" parent="CanvasLayer/GunBase"]
+position = Vector2(725, 392)
+texture = ExtResource("2_b05mp")
+hframes = 16
+
+[node name="Crosshair" type="ColorRect" parent="CanvasLayer/GunBase"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -4.5
+offset_top = -4.5
+offset_right = 4.5
+offset_bottom = 4.5
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.631373, 0, 0.4)
+
+[node name="DeathScreen" type="Control" parent="CanvasLayer/GunBase"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/GunBase/DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -52.0
+offset_right = 50.5
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/GunBase/DeathScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -37.5
+offset_right = 40.0
+offset_bottom = -14.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "YOU DIED!"
+
+[node name="Restart" type="Button" parent="CanvasLayer/GunBase/DeathScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = 0.5
+offset_right = 37.5
+offset_bottom = 31.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "RESTART"
+
+[node name="Animations" type="AnimationPlayer" parent="CanvasLayer/GunBase"]
+libraries = {
+"": SubResource("AnimationLibrary_3850l")
+}
+autoplay = "idle"
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 4
+
+[node name="Panel" type="Panel" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -70.0
+offset_right = 256.0
+grow_vertical = 0
+
+[node name="bullets" type="Label" parent="CanvasLayer/UI/Panel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -38.0
+offset_right = 122.0
+offset_bottom = 38.0
+grow_vertical = 2
+text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ammo" type="Label" parent="CanvasLayer/UI/Panel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -123.0
+offset_top = -41.0
+offset_bottom = 41.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "120"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GunSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lyhe2")
+bus = &"Sfx"
+
+[node name="FireRate" type="Timer" parent="."]
+
+[node name="ReloadTime" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="CanvasLayer/GunBase/Animations" to="." method="_on_animations_animation_finished"]
+[connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]
+[connection signal="timeout" from="ReloadTime" to="." method="_on_reload_time_timeout"]

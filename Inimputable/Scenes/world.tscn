@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://box71tjtj62j1"]
+
+[ext_resource type="PackedScene" uid="uid://c5es5rnc7tixu" path="res://Scenes/player/player.tscn" id="1_jak02"]
+[ext_resource type="PackedScene" uid="uid://dea2eujnigjm4" path="res://Scenes/World/Items/Weapons/weapon_area3d.tscn" id="2_kwif1"]
+[ext_resource type="Resource" uid="uid://dmoj8pyi5yfjh" path="res://Resources/Guns/pistol.tres" id="3_v3bm5"]
+[ext_resource type="PackedScene" uid="uid://dw6ielj8re8ap" path="res://Scenes/World/house.tscn" id="4_wrwen"]
+
+[sub_resource type="Environment" id="Environment_kap60"]
+background_mode = 1
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kap60")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.487351, -0.0650824, -0.870777, 0.870407, -0.0435756, 0.490401, -0.0698612, -0.996928, 0.0354116, -16.906, 19.6125, 0.706101)
+light_color = Color(0.65098, 0.72549, 1, 1)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_jak02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="Area3D" parent="." instance=ExtResource("2_kwif1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.27036, 0.206773, -1.3103)
+weapon_data = ExtResource("3_v3bm5")
+
+[node name="House" parent="." instance=ExtResource("4_wrwen")]

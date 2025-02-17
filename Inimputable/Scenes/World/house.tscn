@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dw6ielj8re8ap"]
+
+[node name="House" type="Node3D"]
+
+[node name="Floor" type="CSGBox3D" parent="."]
+use_collision = true
+collision_mask = 3
+size = Vector3(60, 0.5, 60)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(3.28087, 0, 0, 0, 1, 0, 0, 0, 1, 13.596, 1.55, 29.875)
+use_collision = true
+collision_mask = 3
+size = Vector3(10, 2.6, 0.25)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(3.29911, 0, 0, 0, 1.00556, 0, 0, 0, 1.00556, 13.6443, 1.55, -29.875)
+use_collision = true
+collision_mask = 3
+size = Vector3(9.9707, 2.6, 0.25)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 29.875, 1.55, 0)
+size = Vector3(60, 2.6, 0.25)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(-1.09169e-06, 0, 1, 0, 1, 0, -24.975, 0, -4.37114e-08, -2.68, 1.55, -0.000593185)
+size = Vector3(2.38287, 2.6, 0.25)
