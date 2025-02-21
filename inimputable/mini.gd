@@ -12,11 +12,13 @@ func _on_body_entered(body: Node3D) -> void:
 	# Check if the collided body is the player
 	if body.is_in_group("player"):
 		
-		
+		$AudioStreamPlayer.play()
 		Global.last_weapon = "mini"
 		Global.current_weapon = "mini"
-		print(Global.current_weapon)
+
 		
 
-		# Queue the ammo object for deletion
-		queue_free()
+
+
+func _on_audio_stream_player_finished() -> void:
+	queue_free()

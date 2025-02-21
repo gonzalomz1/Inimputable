@@ -1,12 +1,12 @@
-res://world.tscn
+res://door.gd
+res://level2.tscn
 res://player.gd
+res://door.tscn
+res://world.tscn
 res://player.tscn
 res://ui.tscn
 res://guard.tscn
 res://ammo.tscn
-res://level2.tscn
 res://machine.tscn
 res://mini.tscn
 res://medkit.tscn
-res://guard.gd
-res://medkit.gd

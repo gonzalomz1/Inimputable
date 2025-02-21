@@ -2,18 +2,21 @@ extends CharacterBody3D
 
 #@onready var player : CharacterBody3D = get_tree().get_first_node_in_group("player")
 
-@onready var player = get_node("../player") as CharacterBody3D
+#@onready var player = get_node("../player") as CharacterBody3D
+@onready var player = Global.player
 
 const SPEED = 1
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")  # Get the gravity from the project settings to be synced with RigidBody nodes.
 var dead = false
 var is_attacking = false  
 var attack_range = 3
+var guard_health = 100
 
 func _ready():
 	add_to_group("enemy")
 
 func _physics_process(delta):
+	player = Global.player
 	print("Llamando a _physics_process()")
 	if dead or is_attacking:  # Check if the enemy is dead or attacking
 		return
@@ -85,3 +88,8 @@ func die():
 	$AnimatedSprite3D.play("die")
 	$AudioStreamPlayer.play()
 	$CollisionShape3D.disabled = true
+	
+func take_damage():
+	guard_health -= 30
+	if guard_health <= 0:
+		die()

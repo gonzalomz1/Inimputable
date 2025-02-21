@@ -11,8 +11,13 @@ func _process(delta: float) -> void:
 func _on_body_entered(body: Node3D) -> void:
 	# Check if the collided body is the player
 	if body.is_in_group("player"):
+		$AudioStreamPlayer.play()
 		Global.last_weapon = "machine"
 		Global.current_weapon = "machine"
 		
 
-		queue_free()
+		
+
+
+func _on_audio_stream_player_finished() -> void:
+	queue_free()

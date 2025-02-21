@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bricqvhvn4tgl"]
+[gd_scene load_steps=12 format=3 uid="uid://bricqvhvn4tgl"]
 
 [ext_resource type="Texture2D" uid="uid://dl3w84eseeyei" path="res://asset/stone floor.png" id="1_riyhf"]
 [ext_resource type="Texture2D" uid="uid://bay2dqv6ohweh" path="res://asset/grey stone wall.png" id="2_lvwxr"]
 [ext_resource type="PackedScene" uid="uid://buh3agcnd72g2" path="res://player.tscn" id="3_n4lwx"]
 [ext_resource type="PackedScene" uid="uid://cu5vohdtojhx7" path="res://guard.tscn" id="4_fxphg"]
+[ext_resource type="PackedScene" uid="uid://8xg7c6go3tt4" path="res://door.tscn" id="5_qrhck"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvn3y"]
 albedo_texture = ExtResource("1_riyhf")
@@ -111,3 +112,6 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 6.56002, 1.3, 0)
 
 [node name="guard2" parent="." instance=ExtResource("4_fxphg")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -5.38293, 1.3, 0)
+
+[node name="Door" parent="." instance=ExtResource("5_qrhck")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 16.7413, 0.472729, 10.5581)

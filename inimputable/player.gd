@@ -9,10 +9,11 @@ var knife_range = 3
 @onready var ui_script = $UI
 @onready var ray = $Camera3D/RayCast3D
 
-
+var can_open_door = false
 
 func _ready():
 	add_to_group("player")
+	Global.player = self
 	#emit_signal("player_ready") # Emitimos la señal cuando el jugador está listo
 
 func _physics_process(delta: float) -> void:
@@ -77,8 +78,8 @@ func shoot():
 		if Global.current_weapon == "knife" and distance_to_collider > knife_range:
 			return
 		else:
-			if collider.has_method("die"):
-				collider.die()
+			if collider.has_method("take_damage"):
+				collider.take_damage()
 
 		
 		
@@ -90,5 +91,8 @@ func damage():
 			queue_free()
 		else:
 			Global.lives -= 1
+			Global.player_health = 100
+			Global.current_weapon = "gun"
+			Global.ammo = 10
 			get_tree().change_scene_to_file("res://world.tscn")
 			Global.player_health = 100
