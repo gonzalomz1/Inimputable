@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5es5rnc7tixu"]
+[gd_scene load_steps=17 format=3 uid="uid://c5es5rnc7tixu"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_u61d8"]
-[ext_resource type="Texture2D" uid="uid://b2gxviyic0033" path="res://Assets/cristian/pistol_sprites.png" id="2_b05mp"]
 [ext_resource type="AudioStream" uid="uid://y4caa02o0j7c" path="res://Assets/course/assets/revolver_shot1.wav" id="2_lyhe2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f122c"]
@@ -22,10 +21,10 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_4ha1k"]
-resource_name = "empty"
-length = 0.1
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_8ogb0"]
+resource_name = "change_weapon_pistol"
+length = 1.1
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -33,15 +32,30 @@ tracks/0/path = NodePath("Gun:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.0333333),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.275, 0.5, 0.625, 0.75, 0.9, 1.05),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [9]
+"values": [2, 3, 4, 5, 6, 7, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.05),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finished_changing_weapon"
+}]
 }
 
-[sub_resource type="Animation" id="Animation_0dhc3"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_ee1kv"]
+resource_name = "empty_pistol"
 length = 0.1
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -55,8 +69,10 @@ tracks/0/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_2r8l6"]
-resource_name = "reload_per_bullet"
+[sub_resource type="Animation" id="Animation_ios73"]
+resource_name = "idle_pistol"
+length = 0.1
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -64,16 +80,16 @@ tracks/0/path = NodePath("Gun:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.133333, 0.333333, 0.533333, 0.733333, 0.933333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4, 5, 6, 7, 8]
+"values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_t456h"]
-resource_name = "reload_per_magazine"
-length = 1.8
-step = 0.02
+[sub_resource type="Animation" id="Animation_qwlkc"]
+resource_name = "reload_pistol"
+length = 1.5
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -81,15 +97,16 @@ tracks/0/path = NodePath("Gun:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(-0.04, 0.08, 0.28, 0.48, 0.68, 0.88, 1.08, 1.28, 1.48, 1.68),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.4, 0.5, 0.7, 0.825, 0.95, 1.3, 1.4),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [3, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+"values": [0, 9, 10, 11, 12, 13, 14, 15, 16, 0]
 }
 
-[sub_resource type="Animation" id="Animation_m6xxm"]
-resource_name = "shoot"
-step = 0.01
+[sub_resource type="Animation" id="Animation_gfhn4"]
+resource_name = "shoot_pistol"
+length = 0.18
+step = 0.025
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -97,20 +114,156 @@ tracks/0/path = NodePath("Gun:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.27, 0.57, 0.87),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [0, 1, 8, 0]
+}
+
+[sub_resource type="Animation" id="Animation_5texm"]
+resource_name = "idle_shotgun"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_uyur4"]
+resource_name = "empty_shotgun"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_qvs1u"]
+resource_name = "change_weapon_shotgun"
+length = 1.3
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.625, 0.75, 0.875, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [2, 3, 4, 5, 6, 7, 6, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finished_changing_weapon"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_dccja"]
+resource_name = "shoot_shotgun"
+length = 2.0
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1.1, 1.375, 1.6, 1.85),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 8, 1, 0, 6, 7, 6, 0]
+}
+
+[sub_resource type="Animation" id="Animation_s7ld5"]
+resource_name = "reload_shotgun"
+length = 0.6
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [9, 10, 11, 12, 13]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.55),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"need_bolt"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_o2bvg"]
+resource_name = "bolt_shotgun"
+length = 0.4
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.05, 0.15, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [6, 7, 6]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3850l"]
 _data = {
 "RESET": SubResource("Animation_3wmcs"),
-"empty": SubResource("Animation_4ha1k"),
-"idle": SubResource("Animation_0dhc3"),
-"reload_per_bullet": SubResource("Animation_2r8l6"),
-"reload_per_magazine": SubResource("Animation_t456h"),
-"shoot": SubResource("Animation_m6xxm")
+"bolt_shotgun": SubResource("Animation_o2bvg"),
+"change_weapon_pistol": SubResource("Animation_8ogb0"),
+"change_weapon_shotgun": SubResource("Animation_qvs1u"),
+"empty_pistol": SubResource("Animation_ee1kv"),
+"empty_shotgun": SubResource("Animation_uyur4"),
+"idle_pistol": SubResource("Animation_ios73"),
+"idle_shotgun": SubResource("Animation_5texm"),
+"reload_pistol": SubResource("Animation_qwlkc"),
+"reload_shotgun": SubResource("Animation_s7ld5"),
+"shoot_pistol": SubResource("Animation_gfhn4"),
+"shoot_shotgun": SubResource("Animation_dccja")
 }
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
@@ -155,8 +308,7 @@ grow_vertical = 0
 
 [node name="Gun" type="Sprite2D" parent="CanvasLayer/GunBase"]
 position = Vector2(725, 392)
-texture = ExtResource("2_b05mp")
-hframes = 16
+hframes = 14
 
 [node name="Crosshair" type="ColorRect" parent="CanvasLayer/GunBase"]
 layout_mode = 1
@@ -230,7 +382,6 @@ text = "RESTART"
 libraries = {
 "": SubResource("AnimationLibrary_3850l")
 }
-autoplay = "idle"
 
 [node name="UI" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -257,7 +408,7 @@ offset_top = -38.0
 offset_right = 122.0
 offset_bottom = 38.0
 grow_vertical = 2
-text = "12"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -273,7 +424,7 @@ offset_top = -41.0
 offset_bottom = 41.0
 grow_horizontal = 0
 grow_vertical = 2
-text = "120"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -284,6 +435,7 @@ bus = &"Sfx"
 [node name="FireRate" type="Timer" parent="."]
 
 [node name="ReloadTime" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="animation_finished" from="CanvasLayer/GunBase/Animations" to="." method="_on_animations_animation_finished"]
 [connection signal="timeout" from="FireRate" to="." method="_on_fire_rate_timeout"]

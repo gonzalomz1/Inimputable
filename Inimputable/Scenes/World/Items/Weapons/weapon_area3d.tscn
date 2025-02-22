@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://dea2eujnigjm4"]
 
 [ext_resource type="Script" path="res://Resources/Guns/WorldItem/weapon_pickup.gd" id="1_eii10"]
-[ext_resource type="Texture2D" uid="uid://bb50pymod352y" path="res://icon.svg" id="3_pdt1s"]
+[ext_resource type="Texture2D" uid="uid://b362ouu066xy1" path="res://icon.svg" id="3_pdt1s"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_k03i3"]
 

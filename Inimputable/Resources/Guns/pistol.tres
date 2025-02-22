@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="WeaponItem" load_steps=5 format=3 uid="uid://dmoj8pyi5yfjh"]
 
 [ext_resource type="Script" path="res://Resources/Guns/weapon_item.gd" id="1_fq0u5"]
-[ext_resource type="Texture2D" uid="uid://mfkdmu3fevg0" path="res://Assets/icons/glock/ICON_glock.png" id="1_hx4xt"]
+[ext_resource type="Texture2D" uid="uid://mfkdmu3fevg0" path="res://Assets/icons/ICON_glock.png" id="1_qar2a"]
 [ext_resource type="AudioStream" uid="uid://y4caa02o0j7c" path="res://Assets/course/assets/revolver_shot1.wav" id="2_euxlt"]
 [ext_resource type="Texture2D" uid="uid://b2gxviyic0033" path="res://Assets/cristian/pistol_sprites.png" id="4_k4ffk"]
 
@@ -9,6 +9,7 @@
 script = ExtResource("1_fq0u5")
 damage = 10
 fire_rate = 0.2
+bullets = 12
 chamber_capacity = 12
 ammo_capacity = 60
 is_automatic = false
@@ -18,13 +19,9 @@ projectile_type = "hitscan"
 sound_shoot = ExtResource("2_euxlt")
 sound_reload = ExtResource("2_euxlt")
 sound_empty = ExtResource("2_euxlt")
-idle_animation = &"idle"
-reload_animation = &"reload_per_magazine"
-shoot_animation = &"shoot"
-empty_animation = &"empty"
 game_item_name = "pistol"
 game_item_id = "01_01"
 game_item_description = "a generic pistol"
-game_item_icon = ExtResource("1_hx4xt")
+game_item_icon = ExtResource("1_qar2a")
 game_item_type = "weapon"
 game_item_pickup_sound = ExtResource("2_euxlt")

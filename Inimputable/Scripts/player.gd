@@ -17,13 +17,19 @@ var mouse_sens: float = 0.5
 var can_shoot: bool = true
 var can_reload: bool = true
 var is_reloading: bool = false
+var is_changing_weapon: bool = false
 var dead: bool = false
 
-var weapon: Array[WeaponItem]
+var pistol: WeaponItem = null
+var shotgun: WeaponItem = null
+var melee: WeaponItem = null
+
 var current_weapon: WeaponItem = null
-var weapon_index: int = 0
-var bullets: int = 0
-var ammo: int = 0
+
+var weapons: Dictionary = {
+	"1": pistol,
+	"2": shotgun
+}
 
 # Vertical rotation limits (in degrees)
 const MIN_VERTICAL_ANGLE: float = -90.0
@@ -46,10 +52,6 @@ func _input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	update_ui()
-	if bullets == 12:
-		can_reload = false
-	else:
-		can_reload = true
 	if Input.is_action_just_pressed("exit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("restart"):
@@ -61,12 +63,22 @@ func _process(delta: float) -> void:
 		var collider = item_scan.get_collider()
 		if collider and collider.has_method("interact"):
 			collider.interact(self) # Pasar el jugador como parametro 
-	if weapon:
+	if Input.is_action_just_pressed("1") and pistol != null and !is_reloading:
+			modify_current_weapon(pistol)
+			return
+	if Input.is_action_just_pressed("2") and shotgun != null and !is_reloading:
+			modify_current_weapon(shotgun)
+			return
+	if current_weapon != null and !is_changing_weapon:
 		if Input.is_action_just_pressed("reload"):
 			reload()
 		if can_shoot and !is_reloading:
 			if Input.is_action_just_pressed("shoot"):
 				shoot()
+		if current_weapon.bullets == current_weapon.chamber_capacity:
+			can_reload = false
+		else:
+			can_reload = true
 
 
 func _physics_process(delta: float) -> void:
@@ -93,8 +105,9 @@ func update_raycasts() -> void:
 	item_scan.global_transform.basis = camera_transform.basis
 
 func update_ui() -> void:
-	bulletsLabel.text = str(bullets)
-	ammoLabel.text = str(ammo)
+	if current_weapon != null:
+		bulletsLabel.text = str(current_weapon.bullets)
+		ammoLabel.text = str(current_weapon.ammo_capacity)
 
 func restart() -> void:
 	get_tree().reload_current_scene()
@@ -105,11 +118,11 @@ func is_weapon_valid() -> bool:
 func reload() -> void:
 	if !can_reload or !is_weapon_valid() or is_reloading:
 		return
-	if ammo <= 0 or bullets == current_weapon.chamber_capacity:
+	if current_weapon.ammo_capacity <= 0 or current_weapon.bullets == current_weapon.chamber_capacity:
 		return
 	can_reload = false
 	is_reloading = true
-	animations.play(current_weapon.reload_animation)
+	animations.play("reload_" + current_weapon.game_item_name)
 	if current_weapon.sound_reload:
 		gun_sound.stream = current_weapon.sound_reload
 		gun_sound.play()
@@ -117,17 +130,15 @@ func reload() -> void:
 	reload_time.start()
 
 func change_pos_and_hframes_gun_sprite(weapon_data: WeaponItem) -> void:
-	if current_weapon.reload_animation == "reload_per_bullet":
-		print("The current weapon has reload_per_bullet animation")
-		gun.position.x = 725
-		gun.position.y = 419
-		gun.hframes = 10
-	elif current_weapon.reload_animation == "reload_per_magazine":
-		print("The current weapon has reload_per_magazine animation")
-		gun.position.x = 725
-		gun.position.y = 392
-		gun.hframes = 16
-
+	match current_weapon.game_item_name:
+		"pistol":
+			gun.position.x = 725
+			gun.position.y = 392
+			gun.hframes = 17
+		"shotgun":
+			gun.position.x = 725
+			gun.position.y = 419
+			gun.hframes = 14
 
 func check_ammo() -> bool:
 	return true
@@ -135,10 +146,10 @@ func check_ammo() -> bool:
 func shoot() -> void:
 	if !can_shoot and !is_weapon_valid():
 		return
-	if bullets <= 0:
+	if current_weapon.bullets <= 0:
 		# Sin balas
 		can_reload = true
-		animations.play(current_weapon.empty_animation)
+		animations.play("empty_" + current_weapon.game_item_name)
 		if current_weapon.sound_empty:
 			gun_sound.stream = current_weapon.sound_empty
 			gun_sound.play()
@@ -147,8 +158,8 @@ func shoot() -> void:
 		return
 	can_shoot = false
 	# Disparo normal
-	bullets -= 1
-	animations.play(current_weapon.shoot_animation)
+	current_weapon.bullets -= 1
+	animations.play("shoot_" + current_weapon.game_item_name)
 	if current_weapon.sound_shoot:
 		gun_sound.stream = current_weapon.sound_shoot
 		gun_sound.play()
@@ -167,32 +178,52 @@ func kill():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func pickup_weapon(weapon_data: WeaponItem) -> void:
-	var cloned = weapon_data.duplicate()
+	var cloned: WeaponItem = weapon_data.duplicate()
 	if weapon_data.texture == null:
-		print("No se puede equipar un arma sin textura.")
+		printerr("No se puede equipar un arma sin textura.")
 		return
-	weapon.append(cloned)
-	modify_current_weapon(cloned)
+	assign_new_weapon_to_slot(cloned)
+
+func assign_new_weapon_to_slot(weapon_data: WeaponItem) -> void:
+	match weapon_data.game_item_name:
+		"pistol":
+			pistol = weapon_data
+		"shotgun":
+			shotgun = weapon_data
 
 func modify_current_weapon(weapon_data: WeaponItem) -> void:
+	is_changing_weapon = true
 	current_weapon = weapon_data
-	bullets = weapon_data.chamber_capacity
-	ammo = weapon_data.ammo_capacity
 	gun.texture = weapon_data.texture
+	animations.play("change_weapon_" + current_weapon.game_item_name)
 	change_pos_and_hframes_gun_sprite(current_weapon)
 
 func _on_animations_animation_finished(anim_name: StringName) -> void:
-	can_shoot = true
-	if anim_name == "reload":
-		bullets = 12
+	if !is_reloading:
+		can_shoot = true
 
 func _on_fire_rate_timeout() -> void:
 	can_shoot = true
 
 func _on_reload_time_timeout() -> void:
-	is_reloading = false
-	var ammo_needed = current_weapon.chamber_capacity - bullets
-	var ammo_to_reload = min(ammo_needed, ammo)
-	bullets += ammo_to_reload
-	ammo -= ammo_to_reload
-	update_ui()
+	if current_weapon.game_item_name == "shotgun":
+		need_bolt()
+	else:
+		is_reloading = false
+		var ammo_needed = current_weapon.chamber_capacity - current_weapon.bullets
+		var ammo_to_reload = min(ammo_needed, current_weapon.ammo_capacity)
+		current_weapon.bullets += ammo_to_reload
+		current_weapon.ammo_capacity -= ammo_to_reload
+		update_ui()
+
+func back_to_idle() -> void:
+	animations.play("idle_" + current_weapon.game_item_name)
+
+func finished_changing_weapon() -> void:
+	is_changing_weapon = false
+
+func need_bolt() -> void:
+	if current_weapon.bullets < current_weapon.chamber_capacity:
+		animations.play("reload_" + current_weapon.game_item_name)
+	else:
+		animations.play("bolt_" + current_weapon.game_item_name)

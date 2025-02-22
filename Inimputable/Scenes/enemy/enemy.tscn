@@ -83,7 +83,7 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" groups=["enemy"]]
 script = ExtResource("1_02c34")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

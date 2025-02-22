@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="WeaponItem" load_steps=5 format=3 uid="uid://gkvux8i5eq7d"]
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=6 format=3 uid="uid://gkvux8i5eq7d"]
 
+[ext_resource type="Texture2D" uid="uid://ds4ti3u8fnmm8" path="res://Assets/icons/ICON_shotgun.png" id="1_4eiww"]
 [ext_resource type="Script" path="res://Resources/Guns/weapon_item.gd" id="1_jtsf4"]
 [ext_resource type="AudioStream" uid="uid://y4caa02o0j7c" path="res://Assets/course/assets/revolver_shot1.wav" id="2_04mxj"]
 [ext_resource type="Texture2D" uid="uid://dt25qfj42uvdf" path="res://Assets/cristian/shotgun_sprites.png" id="2_bpqar"]
@@ -9,19 +10,17 @@
 script = ExtResource("1_jtsf4")
 damage = 10
 fire_rate = 2.0
-chamber_capacity = 12
-ammo_capacity = 60
+bullets = 6
+chamber_capacity = 6
+ammo_capacity = 36
 is_automatic = false
-reload_time = 1.0
+reload_time = 0.6
 texture = ExtResource("2_bpqar")
 projectile_type = "hitscan"
 sound_shoot = ExtResource("2_04mxj")
 sound_reload = ExtResource("2_qanp6")
-idle_animation = &"idle"
-reload_animation = &"reload_per_bullet"
-shoot_animation = &"shoot"
-empty_animation = &"empty"
-game_item_name = ""
-game_item_id = ""
-game_item_description = ""
+game_item_name = "shotgun"
+game_item_id = "01_02"
+game_item_description = "a regular shotgun"
+game_item_icon = ExtResource("1_4eiww")
 game_item_type = ""
