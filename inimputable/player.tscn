@@ -1,7 +1,14 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=5 format=3 uid="uid://buh3agcnd72g2"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_0xbss"]
 [ext_resource type="PackedScene" uid="uid://cu887m4btgge" path="res://ui.tscn" id="2_f1qmf"]
+=======
+[gd_scene load_steps=5 format=3 uid="uid://cj3c02ujbmg2u"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_0xbss"]
+[ext_resource type="PackedScene" uid="uid://d04pwc1yrfklt" path="res://ui.tscn" id="2_f1qmf"]
+>>>>>>> Stashed changes
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_jquht"]
 

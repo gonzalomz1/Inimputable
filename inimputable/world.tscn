@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=20 format=3 uid="uid://b46nx48ksuk5y"]
 
 [ext_resource type="PackedScene" uid="uid://buh3agcnd72g2" path="res://player.tscn" id="1_2p8t6"]
@@ -8,6 +9,17 @@
 [ext_resource type="PackedScene" uid="uid://cmkir4cpt7qse" path="res://machine.tscn" id="6_48jru"]
 [ext_resource type="PackedScene" uid="uid://co0ruwk72xrwp" path="res://mini.tscn" id="7_gdr3q"]
 [ext_resource type="PackedScene" uid="uid://cja2ryplo828c" path="res://medkit.tscn" id="8_nhdcj"]
+=======
+[gd_scene load_steps=19 format=3 uid="uid://cy4bvh6gclvph"]
+
+[ext_resource type="PackedScene" uid="uid://cj3c02ujbmg2u" path="res://player.tscn" id="1_2p8t6"]
+[ext_resource type="Script" path="res://world.gd" id="1_l2n3h"]
+[ext_resource type="PackedScene" uid="uid://clf6jsw3pg7c4" path="res://guard.tscn" id="3_d53mh"]
+[ext_resource type="PackedScene" uid="uid://b8ckdy082t2he" path="res://ammo.tscn" id="4_sj0jq"]
+[ext_resource type="PackedScene" uid="uid://djkma76pyitu0" path="res://machine.tscn" id="6_48jru"]
+[ext_resource type="PackedScene" uid="uid://blbvm542p6ylh" path="res://mini.tscn" id="7_gdr3q"]
+[ext_resource type="PackedScene" uid="uid://ccoauyvxt3ygb" path="res://medkit.tscn" id="8_nhdcj"]
+>>>>>>> Stashed changes
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_tkptl"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -28,7 +40,10 @@ glow_enabled = true
 data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_um8xq"]
+<<<<<<< Updated upstream
 albedo_texture = ExtResource("1_g60pd")
+=======
+>>>>>>> Stashed changes
 uv1_scale = Vector3(20, 10, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_reem3"]
@@ -37,11 +52,17 @@ uv1_scale = Vector3(20, 10, 1)
 data = PackedVector3Array(-0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uo3qh"]
+<<<<<<< Updated upstream
 albedo_texture = ExtResource("1_g60pd")
 uv1_scale = Vector3(40, 10, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kom6"]
 albedo_texture = ExtResource("1_g60pd")
+=======
+uv1_scale = Vector3(40, 10, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kom6"]
+>>>>>>> Stashed changes
 uv1_scale = Vector3(40, 10, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ry30s"]

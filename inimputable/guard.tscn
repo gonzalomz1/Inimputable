@@ -1,9 +1,18 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=19 format=3 uid="uid://cu5vohdtojhx7"]
 
 [ext_resource type="Script" path="res://guard.gd" id="1_xfm5h"]
 [ext_resource type="AudioStream" uid="uid://d1spo77e4gwpr" path="res://asset/gun.ogg" id="2_cvu0w"]
 [ext_resource type="Texture2D" uid="uid://ckgglugu3kki8" path="res://asset/guard.png" id="2_pv4g8"]
 [ext_resource type="AudioStream" uid="uid://bdnb0qom127in" path="res://asset/Enemy Pain.wav" id="3_8dxoq"]
+=======
+[gd_scene load_steps=19 format=3 uid="uid://clf6jsw3pg7c4"]
+
+[ext_resource type="Script" path="res://guard.gd" id="1_xfm5h"]
+[ext_resource type="AudioStream" path="res://asset/gun.ogg" id="2_cvu0w"]
+[ext_resource type="Texture2D" path="res://asset/guard.png" id="2_pv4g8"]
+[ext_resource type="AudioStream" path="res://asset/Enemy Pain.wav" id="3_8dxoq"]
+>>>>>>> Stashed changes
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ujb15"]
 atlas = ExtResource("2_pv4g8")

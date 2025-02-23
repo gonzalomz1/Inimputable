@@ -1,8 +1,16 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=5 format=3 uid="uid://co0ruwk72xrwp"]
 
 [ext_resource type="Script" path="res://mini.gd" id="1_h8kkc"]
 [ext_resource type="Texture2D" uid="uid://h4ia16krirxh" path="res://asset/wolf-items.png" id="2_em6f4"]
 [ext_resource type="AudioStream" uid="uid://4yy24s3x228b" path="res://asset/All Right!.wav" id="3_qqnrq"]
+=======
+[gd_scene load_steps=5 format=3 uid="uid://blbvm542p6ylh"]
+
+[ext_resource type="Script" path="res://mini.gd" id="1_h8kkc"]
+[ext_resource type="Texture2D" path="res://asset/wolf-items.png" id="2_em6f4"]
+[ext_resource type="AudioStream" path="res://asset/All Right!.wav" id="3_qqnrq"]
+>>>>>>> Stashed changes
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hr1in"]
 height = 1.05063

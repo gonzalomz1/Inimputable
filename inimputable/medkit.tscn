@@ -1,8 +1,16 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=5 format=3 uid="uid://cja2ryplo828c"]
 
 [ext_resource type="Script" path="res://medkit.gd" id="1_4qaa2"]
 [ext_resource type="Texture2D" uid="uid://h4ia16krirxh" path="res://asset/wolf-items.png" id="2_lyave"]
 [ext_resource type="AudioStream" uid="uid://bg5y2srpqijbg" path="res://asset/Health.wav" id="3_d4xxf"]
+=======
+[gd_scene load_steps=5 format=3 uid="uid://ccoauyvxt3ygb"]
+
+[ext_resource type="Script" path="res://medkit.gd" id="1_4qaa2"]
+[ext_resource type="Texture2D" path="res://asset/wolf-items.png" id="2_lyave"]
+[ext_resource type="AudioStream" path="res://asset/Health.wav" id="3_d4xxf"]
+>>>>>>> Stashed changes
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hr1in"]
 height = 1.05063

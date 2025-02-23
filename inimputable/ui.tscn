@@ -1,8 +1,16 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=43 format=3 uid="uid://cu887m4btgge"]
 
 [ext_resource type="Texture2D" uid="uid://k06rvbwl7p6j" path="res://asset/wolfweapons.png" id="1_55jrg"]
 [ext_resource type="Script" path="res://ui.gd" id="1_n7anj"]
 [ext_resource type="Texture2D" uid="uid://2r0pj4yk121i" path="res://asset/bjface.png" id="3_xv0rl"]
+=======
+[gd_scene load_steps=43 format=3 uid="uid://d04pwc1yrfklt"]
+
+[ext_resource type="Texture2D" path="res://asset/wolfweapons.png" id="1_55jrg"]
+[ext_resource type="Script" path="res://ui.gd" id="1_n7anj"]
+[ext_resource type="Texture2D" path="res://asset/bjface.png" id="3_xv0rl"]
+>>>>>>> Stashed changes
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4f2b"]
 atlas = ExtResource("1_55jrg")

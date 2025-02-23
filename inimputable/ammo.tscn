@@ -1,8 +1,16 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=5 format=3 uid="uid://bmjvajtkh1qcp"]
 
 [ext_resource type="Texture2D" uid="uid://h4ia16krirxh" path="res://asset/wolf-items.png" id="1_4p5rj"]
 [ext_resource type="Script" path="res://ammo.gd" id="1_22smc"]
 [ext_resource type="AudioStream" uid="uid://bo3yicq113ki4" path="res://asset/Pickup.wav" id="3_e1qsb"]
+=======
+[gd_scene load_steps=5 format=3 uid="uid://b8ckdy082t2he"]
+
+[ext_resource type="Texture2D" path="res://asset/wolf-items.png" id="1_4p5rj"]
+[ext_resource type="Script" path="res://ammo.gd" id="1_22smc"]
+[ext_resource type="AudioStream" path="res://asset/Pickup.wav" id="3_e1qsb"]
+>>>>>>> Stashed changes
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hr1in"]
 height = 1.05063
